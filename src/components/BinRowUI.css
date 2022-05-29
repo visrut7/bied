@@ -1,0 +1,11 @@
+.bin-row {
+    border: 1px solid;
+}
+
+.bit-input {
+    width: 15px;
+    outline: none;
+    border: none;
+    padding-bottom: 7px;
+    text-align: center;
+}
