@@ -1,0 +1,16 @@
+form {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
+input {
+    outline: none;
+    font-size: 1.4rem;
+    padding: 4px 10px;
+    margin: 0px 10px;
+}
+
+button:hover {
+    background-color: gainsboro;
+}

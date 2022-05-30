@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { IBinRow } from "../types";
 import { isNumber, getRawBytes } from "../utils";
 
+import "./AddRowForm.css";
+
 const BINARY_NUMBER_WIDTH = 32;
 const PADDING_VALUE = "0";
 
@@ -39,8 +41,12 @@ const AddRowForm: React.FC<AddRowFormProps> = ({ rows, setRows }) => {
 
   return (
     <form onSubmit={addNewRow}>
-      <input type="text" onChange={takeNumberInput} value={inputNumber} />
-      <button type="submit">+</button>
+      <input
+        type="text"
+        autoFocus={true}
+        value={inputNumber}
+        onChange={takeNumberInput}
+      />
     </form>
   );
 };
