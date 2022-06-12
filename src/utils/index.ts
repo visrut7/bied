@@ -15,6 +15,13 @@ export const getRawBytes = (n: number, width: number, z: string): string[] => {
   ).split("");
 };
 
+export const complementBytes = (bytes: string[]): string[] => {
+  return bytes.map((val) => {
+    if (val === "1") return "0";
+    return "1";
+  });
+};
+
 export const getDecimal = (bytes: string[]): number => {
   const binaryString = bytes.join("");
   return parseInt(binaryString, 2);

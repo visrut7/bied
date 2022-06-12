@@ -8,6 +8,7 @@ import {
   shiftRight,
   rotateRight,
   rotateLeft,
+  complementBytes,
 } from "../utils";
 
 import "./BinRowUI.scss";
@@ -57,6 +58,11 @@ const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
     setRows([...rows]);
   };
 
+  const complementBinRow = (rowId: number) => {
+    rows[rowId].bytes = complementBytes(rows[rowId].bytes);
+    setRows([...rows]);
+  };
+
   return (
     <div className="bin-row">
       <div className="decimal-val">{getDecimal(rows[id].bytes)}</div>
@@ -90,6 +96,10 @@ const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
 
           <button className="left-rotate" onClick={() => leftRotate(id)}>
             <i className="fa-regular fa-arrow-rotate-left"></i>
+          </button>
+
+          <button className="complement" onClick={() => complementBinRow(id)}>
+            <i className="fas fa-exclamation"></i>
           </button>
         </div>
       )}
