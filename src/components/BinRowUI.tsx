@@ -1,6 +1,6 @@
 import React from "react";
 import { IBinRow } from "../types";
-import { getDecimal } from "../utils";
+import { getDecimal, shiftLeft, shiftRight } from "../utils";
 
 import "./BinRowUI.scss";
 
@@ -20,6 +20,16 @@ const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
     setRows([...rows]);
   };
 
+  const leftShift = (rowId: number) => {
+    rows[rowId].bytes = shiftLeft(rows[rowId].bytes);
+    setRows([...rows]);
+  };
+
+  const rightShift = (rowId: number) => {
+    rows[rowId].bytes = shiftRight(rows[rowId].bytes);
+    setRows([...rows]);
+  };
+
   return (
     <div className="bin-row">
       <div className="decimal-val">{getDecimal(rows[id].bytes)}</div>
@@ -33,6 +43,17 @@ const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
             </span>
           );
         })}
+      </div>
+      <div className="operations">
+        <button className="left-shift" onClick={() => leftShift(id)}>
+          <i className="fa-solid fa-chevron-left"></i>
+          <i className="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <button className="right-shift" onClick={() => rightShift(id)}>
+          <i className="fa-solid fa-chevron-right"></i>
+          <i className="fa-solid fa-chevron-right"></i>
+        </button>
       </div>
     </div>
   );

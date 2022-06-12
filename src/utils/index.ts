@@ -19,3 +19,5 @@ export const getDecimal = (bytes: string[]): number => {
   const binaryString = bytes.join("");
   return parseInt(binaryString, 2);
 };
+
+export * from "./shift-bits";
