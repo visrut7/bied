@@ -3,7 +3,7 @@ import AddRowForm from "./components/AddRowForm";
 import BinRowUI from "./components/BinRowUI";
 import { IBinRow } from "./types";
 
-import "./App.css";
+import "./App.scss";
 
 const App: React.FC = () => {
   const [rows, setRows] = useState<IBinRow[]>([]);

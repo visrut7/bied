@@ -2,7 +2,7 @@ import React from "react";
 import { IBinRow } from "../types";
 import { getDecimal } from "../utils";
 
-import "./BinRowUI.css";
+import "./BinRowUI.scss";
 
 interface BinRowUIProps {
   id: number;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IBinRow } from "../types";
 import { isNumber, getRawBytes } from "../utils";
 
-import "./AddRowForm.css";
+import "./AddRowForm.scss";
 
 const BINARY_NUMBER_WIDTH = 32;
 const PADDING_VALUE = "0";
