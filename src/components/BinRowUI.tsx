@@ -1,6 +1,12 @@
 import React from "react";
 import { IBinRow } from "../types";
-import { getDecimal, shiftLeft, shiftRight } from "../utils";
+import {
+  getDecimal,
+  shiftLeft,
+  shiftRight,
+  rotateRight,
+  rotateLeft,
+} from "../utils";
 
 import "./BinRowUI.scss";
 
@@ -30,6 +36,15 @@ const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
     setRows([...rows]);
   };
 
+  const leftRotate = (rowId: number) => {
+    rows[rowId].bytes = rotateLeft(rows[rowId].bytes);
+    setRows([...rows]);
+  };
+  const rightRotate = (rowId: number) => {
+    rows[rowId].bytes = rotateRight(rows[rowId].bytes);
+    setRows([...rows]);
+  };
+
   return (
     <div className="bin-row">
       <div className="decimal-val">{getDecimal(rows[id].bytes)}</div>
@@ -53,6 +68,14 @@ const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
         <button className="right-shift" onClick={() => rightShift(id)}>
           <i className="fa-solid fa-chevron-right"></i>
           <i className="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <button className="right-rotate" onClick={() => rightRotate(id)}>
+          <i className="fa-regular fa-arrow-rotate-right"></i>
+        </button>
+
+        <button className="left-rotate" onClick={() => leftRotate(id)}>
+          <i className="fa-regular fa-arrow-rotate-left"></i>
         </button>
       </div>
     </div>
