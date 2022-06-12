@@ -1,5 +1,7 @@
 import React from "react";
+import { useState } from "react";
 import { IBinRow } from "../types";
+
 import {
   getDecimal,
   shiftLeft,
@@ -17,13 +19,17 @@ interface BinRowUIProps {
 }
 
 const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
+  const [isLock, setIsLock] = useState<boolean>(false);
+
   const toggleBit = (rowId: number, bitNo: number) => {
-    if (rows[rowId].bytes[bitNo] === "1") {
-      rows[rowId].bytes[bitNo] = "0";
-    } else {
-      rows[rowId].bytes[bitNo] = "1";
+    if (isLock === false) {
+      if (rows[rowId].bytes[bitNo] === "1") {
+        rows[rowId].bytes[bitNo] = "0";
+      } else {
+        rows[rowId].bytes[bitNo] = "1";
+      }
+      setRows([...rows]);
     }
-    setRows([...rows]);
   };
 
   const leftShift = (rowId: number) => {
@@ -40,8 +46,14 @@ const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
     rows[rowId].bytes = rotateLeft(rows[rowId].bytes);
     setRows([...rows]);
   };
+
   const rightRotate = (rowId: number) => {
     rows[rowId].bytes = rotateRight(rows[rowId].bytes);
+    setRows([...rows]);
+  };
+
+  const removeRow = (rowId: number) => {
+    rows.splice(rowId, 1);
     setRows([...rows]);
   };
 
@@ -59,23 +71,36 @@ const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
           );
         })}
       </div>
-      <div className="operations">
-        <button className="left-shift" onClick={() => leftShift(id)}>
-          <i className="fa-solid fa-chevron-left"></i>
-          <i className="fa-solid fa-chevron-left"></i>
-        </button>
 
-        <button className="right-shift" onClick={() => rightShift(id)}>
-          <i className="fa-solid fa-chevron-right"></i>
-          <i className="fa-solid fa-chevron-right"></i>
-        </button>
+      {!isLock && (
+        <div className="operations">
+          <button className="left-shift" onClick={() => leftShift(id)}>
+            <i className="fa-solid fa-chevron-left"></i>
+            <i className="fa-solid fa-chevron-left"></i>
+          </button>
 
-        <button className="right-rotate" onClick={() => rightRotate(id)}>
-          <i className="fa-regular fa-arrow-rotate-right"></i>
-        </button>
+          <button className="right-shift" onClick={() => rightShift(id)}>
+            <i className="fa-solid fa-chevron-right"></i>
+            <i className="fa-solid fa-chevron-right"></i>
+          </button>
 
-        <button className="left-rotate" onClick={() => leftRotate(id)}>
-          <i className="fa-regular fa-arrow-rotate-left"></i>
+          <button className="right-rotate" onClick={() => rightRotate(id)}>
+            <i className="fa-regular fa-arrow-rotate-right"></i>
+          </button>
+
+          <button className="left-rotate" onClick={() => leftRotate(id)}>
+            <i className="fa-regular fa-arrow-rotate-left"></i>
+          </button>
+        </div>
+      )}
+
+      <div className="top-controls">
+        <button className="toggle-lock" onClick={() => setIsLock(!isLock)}>
+          {isLock && <i className="fa-solid fa-lock"></i>}
+          {!isLock && <i className="fa-solid fa-lock-open"></i>}
+        </button>
+        <button className="delete-btn" onClick={() => removeRow(id)}>
+          <i className="fa-solid fa-trash-can"></i>
         </button>
       </div>
     </div>
