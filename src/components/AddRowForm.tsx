@@ -25,6 +25,7 @@ const AddRowForm: React.FC<AddRowFormProps> = ({ rows, setRows }) => {
           PADDING_VALUE
         ),
         id: rows.length,
+        isLock: false,
       };
       setRows([new_row, ...rows]);
     }

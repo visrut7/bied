@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { IBinRow } from "../types";
 
 import {
@@ -20,10 +19,8 @@ interface BinRowUIProps {
 }
 
 const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
-  const [isLock, setIsLock] = useState<boolean>(false);
-
   const toggleBit = (rowId: number, bitNo: number) => {
-    if (isLock === false) {
+    if (rows[rowId].isLock === false) {
       if (rows[rowId].bytes[bitNo] === "1") {
         rows[rowId].bytes[bitNo] = "0";
       } else {
@@ -63,6 +60,11 @@ const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
     setRows([...rows]);
   };
 
+  const toggleLock = (rowId: number) => {
+    rows[rowId].isLock = !rows[rowId].isLock;
+    setRows([...rows]);
+  };
+
   return (
     <div className="bin-row">
       <div className="decimal-val">{getDecimal(rows[id].bytes)}</div>
@@ -80,7 +82,7 @@ const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
         })}
       </div>
 
-      {!isLock && (
+      {!rows[id].isLock && (
         <div className="operations">
           <button className="left-shift" onClick={() => leftShift(id)}>
             <i className="fa-solid fa-chevron-left"></i>
@@ -107,9 +109,9 @@ const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
       )}
 
       <div className="top-controls">
-        <button className="toggle-lock" onClick={() => setIsLock(!isLock)}>
-          {isLock && <i className="fa-solid fa-lock"></i>}
-          {!isLock && <i className="fa-solid fa-lock-open"></i>}
+        <button className="toggle-lock" onClick={() => toggleLock(id)}>
+          {rows[id].isLock && <i className="fa-solid fa-lock"></i>}
+          {!rows[id].isLock && <i className="fa-solid fa-lock-open"></i>}
         </button>
         <button className="delete-btn" onClick={() => removeRow(id)}>
           <i className="fa-solid fa-trash-can"></i>
