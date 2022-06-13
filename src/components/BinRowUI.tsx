@@ -69,11 +69,13 @@ const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
       <div className="byte-row">
         {rows[id].bytes.map((byte, i) => {
           return (
-            <span key={i}>
-              <button className="bit-input" onClick={() => toggleBit(id, i)}>
-                {byte}
-              </button>
-            </span>
+            <button
+              key={i}
+              onClick={() => toggleBit(id, i)}
+              className={`bit-input ${i % 8 === 0 ? "gbit" : ""}`}
+            >
+              {byte}
+            </button>
           );
         })}
       </div>
