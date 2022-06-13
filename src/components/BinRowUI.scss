@@ -1,44 +1,65 @@
 .bin-row {
-    border: 1px solid;
+  margin: 50px 70px;
+  padding: 30px 5px;
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 1px 0px 2px 1px rgb(178, 178, 178);
+
+  .top-controls {
+    top: -10px;
+    right: -15px;
+    position: absolute;
+
+    .delete-btn {
+        color: rgb(255, 69, 69);
+    }
+  }
+
+  button {
+    border: none;
+    color: gray;
+    font-size: 1.2rem;
     border-radius: 4px;
-    margin: 10px 5px;
-    position: relative;
+    background-color: white;
+  }
 
-    .top-controls {
-        top: 0;
-        right: 0;
-        position: absolute;
-    }
-
-    button {
-        border-radius: 4px;
-        border: 1px solid gray;
-    }
+  .decimal-val {
+      top: -13px;
+      color: gray;
+      font-size: 1.4rem;
+      position: absolute;
+      transform: translateX(-50%);
+      background-color: white;
+  }
 }
 
 .byte-row {
-    display: flex;
-    justify-content: center;
-}
+  display: flex;
+  justify-content: center;
 
-.bit-input {
+  .bit-input {
     width: 15px;
     width: 25px;
     margin: 5px;
+    color: gray;
     border: none;
     outline: none;
     font-weight: bold;
     font-size: 1.1rem;
     border-radius: 3px;
     text-align: center;
+    background-color: white;
+    box-shadow: 1px 1px 4px 1px gray;
+  }
 }
 
 .operations {
-    button {
-        border: none;
-        outline: none;
-        border-radius: 4px;
-        margin: 0px 2px;
-        border: 1px solid gray;
-    }
+  right: 10px;
+  bottom: -10px;
+  position: absolute;
+  background-color: white;
+  
+  button {
+      margin: 0px 3px;
+  }
 }
