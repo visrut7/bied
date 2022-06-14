@@ -1,0 +1,16 @@
+.bin-ops {
+    top: 0;
+    right: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+
+    button {
+        border: none;
+        color: gray;
+        margin: 3px 0px;
+        font-size: 1.2rem;
+        font-weight: bolder;
+        background-color: white;
+    }
+}

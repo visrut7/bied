@@ -29,3 +29,4 @@ export const getDecimal = (bytes: string[]): number => {
 
 export * from "./shift-bits";
 export * from "./rotate-bits";
+export * from "./binary-ops";

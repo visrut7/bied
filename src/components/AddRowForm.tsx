@@ -26,6 +26,7 @@ const AddRowForm: React.FC<AddRowFormProps> = ({ rows, setRows }) => {
         ),
         id: rows.length,
         isLock: false,
+        selected: false,
       };
       setRows([new_row, ...rows]);
     }

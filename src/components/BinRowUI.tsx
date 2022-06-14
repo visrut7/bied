@@ -65,6 +65,11 @@ const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
     setRows([...rows]);
   };
 
+  const toggleSelect = (rowId: number) => {
+    rows[rowId].selected = !rows[rowId].selected;
+    setRows([...rows]);
+  };
+
   return (
     <div className="bin-row">
       <div className="decimal-val">{getDecimal(rows[id].bytes)}</div>
@@ -108,7 +113,13 @@ const BinRowUI: React.FC<BinRowUIProps> = ({ rows, id, setRows }) => {
         </div>
       )}
 
-      <div className="top-controls">
+      <div className="top-controls" onClick={() => toggleSelect(id)}>
+        {!rows[id].isLock && (
+          <button className="select">
+            {rows[id].selected && <i className="fa-solid fa-circle-check"></i>}
+            {!rows[id].selected && <i className="fa-solid fa-circle-notch"></i>}
+          </button>
+        )}
         <button className="toggle-lock" onClick={() => toggleLock(id)}>
           {rows[id].isLock && <i className="fa-solid fa-lock"></i>}
           {!rows[id].isLock && <i className="fa-solid fa-lock-open"></i>}

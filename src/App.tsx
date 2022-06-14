@@ -4,6 +4,7 @@ import BinRowUI from "./components/BinRowUI";
 import { IBinRow } from "./types";
 
 import "./App.scss";
+import BinaryOperations from "./components/BinaryOperations";
 
 const App: React.FC = () => {
   const [rows, setRows] = useState<IBinRow[]>([]);
@@ -14,6 +15,7 @@ const App: React.FC = () => {
       {rows.map((row, i) => {
         return <BinRowUI key={i} id={i} rows={rows} setRows={setRows} />;
       })}
+      <BinaryOperations rows={rows} setRows={setRows} />
     </div>
   );
 };
