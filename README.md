@@ -1,3 +1,3 @@
 # Bit Manipulation
 
--> [See Website Here](https://nightboard.github.io/bied/)
+-> [See Website Here](https://imvisrut.tech/bied/)
